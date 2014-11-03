@@ -4,8 +4,8 @@ using namespace std;
 
 int main() {
 
-  //programme that asks for two doubles as input from the user and then prints out the product on the screen
-
+  //programme that asks for two doubles and lets the user decide which operation to perform on them
+  
   double a;
   double b;
 
