@@ -7,7 +7,6 @@ int main() {
 
 
 
-  while(
 
   //programme that asks for two doubles and lets the user decide which operation to perform on them
   
@@ -36,7 +35,7 @@ int main() {
   }
   
 
-  cout << "please enter two numbers that you want to perform the operation on!";
+  cout << "please enter two numbers that you want to perform the operation on!" << endl;
 
   cin >> a >> b;
 
