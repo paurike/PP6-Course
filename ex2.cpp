@@ -223,11 +223,53 @@ int main() {
       int c_op;
       
       std::cout << "Please enter" << std::endl 
-		<< "5 to calculate and x-Intercept" << std::endl
+		<< "5 to calculate the x-Intercept of a linear function" << std::endl
 		<< "6 to solve a quadratic equation" <<std::endl
 		<< "7 to calculate the length of a 3-vector" << std::endl
-		<< "8 to calculate the length of a 4-vector" << std::endl;
+		<< "8 to calculate the length of a 4-vector" << std::endl
+		<< "9 to calculate the invariant mass of two particles" << std::endl
+		<< "10 to sort an array of numbers from largest to smallest" << std::endl;
+
+
+      std::cin >> c_op;
+
       
+      int r =0;
+
+      while(r==0){
+
+	if((c_op !=5) & (c_op !=6) & (c_op !=7) & (c_op !=8) & (c_op !=9) & (c_op !=10)){
+
+	  std::cout << "please chose between 5-10 to select an operation!" << endl;
+	  std::cin.clear();
+	  cin.ignore(INT_MAX, '\n');
+	  std::cin >> c_op;
+	
+	}
+	else{r=1;}
+      }
+     
+      
+
+      if(c_op == 5){
+	
+	double yintercept;
+	double gradient;
+
+	std::cout << "Please enter two numbers for the y-intercept and the gradient of your linear function" << std::endl;
+
+	std::cin >> yintercept;
+	std::cin >> gradient;
+
+	std::cout << "The x-intercept of your function is: " <<  xIntercept(yintercept, gradient) << std::endl;
+
+	
+
+      }
+
+ 
+
+ 
     }
     
   }
