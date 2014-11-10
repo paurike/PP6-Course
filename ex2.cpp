@@ -3,6 +3,9 @@
 
 using namespace std;
 
+double xIntercept;
+void change;
+
 int main() {
 
 
@@ -58,7 +61,6 @@ int main() {
   }
 
 
-
   if(c==4){
     if (0==b)
     {cout << "Don't devide by zero, it implodes the universe!!" << endl;
@@ -70,3 +72,34 @@ int main() {
   return 0;
 
 }
+
+
+//xIntercept takes a double yintercept and a double gradient of a linear function and returns the value of the x-intercept as a double 
+
+double xIntercept(double yintercept, double gradient) {
+
+  double xintercept;
+
+  xintercept = -yintercept/gradient;
+  return xintercept;
+
+
+}
+
+//change is a function of two doubles that are passed by reference. It switches the values so that the value of a becomes the value of b and the other way around.
+
+void change(double& a, double& b) {
+
+  double c = a;
+  a= b;
+  b= c;
+
+
+}
+
+
+
+
+
+
+
