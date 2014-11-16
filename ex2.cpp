@@ -1,128 +1,14 @@
 #include<iostream>
 #include<climits>
 #include<cmath>
+#include "bubble_sort.cpp"
+#include "physics.cpp"
+#include "maths.cpp"
 
 using namespace std;
 
 
-
-//xIntercept takes a double yintercept and a double gradient of a linear function and returns the value of the x-intercept as a double 
-
-double xIntercept(double yintercept, double gradient) {
-
-  double xintercept;
-
-  xintercept = -yintercept/gradient;
-  return xintercept;
-
-
-}
-
-//change is a function of two doubles that are passed by reference. It switches the values so that the value of a becomes the value of b and the other way around.
-
-void change(double& a, double& b) {
-
-  double c = a;
-  a= b;
-  b= c;
-
-
-}
-
-
-//quadratic takes 3 doubles as a, b and c of the midnight equation and a boolean that indicates whether the output is the plus or minus solution
-
-double quadratic(double a, double b, double c, bool positiveRoot)
-{
-  double t(sqrt(pow(b, 2) - 4 * a * c));
-  double res(0);
-
-  if (positiveRoot)
-  {
-    res = (-b + t) / (2 * a);
-  }
-  else
-  {
-    res = (-b - t) / (2 * a);
-  }
-
-  return res;
-}
-
-
-//length takes the 3 spacial components of a vector as dobules and returns the length of the vector
-
-double length(double x, double y, double z)
-{
-  return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
-}
-
-
-
-//4length takes the components of a 4-vector and returns the lenght of the 4-vector
-
-double four_length(double t, double x, double y, double z)
-{
-  return sqrt(pow(t, 2) - pow(length(x, y, z), 2));
-} 
-
-
-
-
-//inv_mass calculates the invariant mass of two particles taking the four-vector components as input
-
-double inv_mass(double e1, double px1, double py1, double pz1, 
-                double e2, double px2, double py2, double pz2)
-{
-  double tot_e(e1 + e2);
-  double tot_px(px1 + px2);
-  double tot_py(py1 + py2);
-  double tot_pz(pz1 + pz2);
-
-  return four_length(tot_e, tot_px, tot_py, tot_pz);
-}
-
-
-//sort takes an array of doubles and its length and sorts the array by size, biggest to smallest
-
-
-
-void sort(double a[], int length){
-
-  bool not_sorted = true;
-
-  while(not_sorted) {
-    
-    not_sorted= false;
-
-    for(int i=0; i<length; i++) {
-      
-      if(a[i] < a[i+1]){
-	change(a[i], a[i+1]);
-	not_sorted=true;
-      }
-      
-    }
-
-
-  }
-
-  for(int j=0; j<length; j++) {
-
-    std::cout << a[j] << std::endl;
-
-  }
-
-
-}
-
-
-
-
-
-
-
-
+//this programme defines the user interface for the pp6calculator. It makes use of maths and physics functions defined in maths.cpp and physics.cpp as well as a sort function defined in bubble_sort.cpp. It lets the user operate a multi-level menu of available functions. 
 
 //MAIN FUNCTION-----------------------------------------------------------------
 
@@ -133,6 +19,8 @@ int main() {
   string op;
 
   while(true){
+
+    //top level of the menu. decide between b(basic arithmetic), p(physics) or q(quit)
 
     std::cout << "enter b if you want to do basic arithmetic , p for more complex physics operations or q to quit the calculator" << endl;
 
@@ -152,7 +40,7 @@ int main() {
     }
     
     
-    //BASIC ARITHMETIC
+    //BASIC ARITHMETIC OPTIONS
     
     
     if(op=="b") {
@@ -192,17 +80,17 @@ int main() {
       
       
       if(b_op==1){
-	cout << "The sum of " << a << " and " << b << " is: " << a+b << endl;
+	cout << "The sum of " << a << " and " << b << " is: " << add(a,b) << endl;
        
       }
       
       if(b_op==2){
-	cout << "The product of " << a << " and " << b << " is: " << a*b << endl;
+	cout << "The product of " << a << " and " << b << " is: " << multiply(a,b) << endl;
 	
       }
       
       if(b_op==3){
-	cout << "The difference of " << a << " and " << b << " is: " << a-b << endl;
+	cout << "The difference of " << a << " and " << b << " is: " << subtract(a,b) << endl;
        
       }
       
@@ -211,7 +99,7 @@ int main() {
 	if (0==b)
 	  {cout << "Don't devide by zero, it implodes the universe!!" << endl;
 	  }
-	else{cout << "The fraction of " << a << " and " << b << " is: " << a/b << endl;}
+	else{cout << "The fraction of " << a << " and " << b << " is: " << divide(a,b) << endl;}
       }
       
       
@@ -264,6 +152,34 @@ int main() {
 	std::cout << "The x-intercept of your function is: " <<  xIntercept(yintercept, gradient) << std::endl;
 
 	
+
+      }
+
+
+      if(c_op == 10){
+
+	
+	int length;
+
+	std::cout << "please enter the length of your array" << std::endl;
+
+	std::cin >> length;
+
+	double a[length];
+
+	std::cout << "please enter the content of your array and press enter after each number" << std::endl;
+	
+	for(int i=0; i<length ; i++){
+
+	  std::cin >> a[i]; 
+
+	}
+	
+	std::cout << "your sorted array from largest to smallest is: " << std::endl;
+	
+	sort(a, length);
+
+
 
       }
 
