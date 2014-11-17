@@ -1,9 +1,10 @@
 #include<iostream>
 #include<climits>
 #include<cmath>
-#include "bubble_sort.cpp"
-#include "physics.cpp"
-#include "maths.cpp"
+#include "bubble_sort.hpp"
+#include "physics.hpp"
+#include "maths.hpp"
+#include "FourVector.hpp"
 
 using namespace std;
 
@@ -20,13 +21,13 @@ int main() {
 
   while(true){
 
-    //top level of the menu. decide between b(basic arithmetic), p(physics) or q(quit)
+    //top level of the menu. decide between b(basic arithmetic), p(physics), r(relativistic physics) or q(quit)
 
-    std::cout << "enter b if you want to do basic arithmetic , p for more complex physics operations or q to quit the calculator" << endl;
+    std::cout << "enter  - b if you want to do basic arithmetic(Day1)," << endl << "       - p for more complex physics operations(Day2)," << endl  << "       - r for relativistic physics operations(Day3)" << endl << "       - or q to quit the calculator" << endl;
 
     std::cin >> op;
     
-    if((op !="b") & (op !="q") & (op !="p")) {
+    if((op !="b") & (op !="q") & (op !="p") & (op != "r")) {
       
       std::cout << "input not recognized. Please try again" << endl;
       std::cin.clear();
@@ -36,6 +37,7 @@ int main() {
     }
     
     if(op=="q"){
+      std::cout << "Thank you for using PP6CALCULATOR! <3" << endl;
       break;
     }
     
@@ -53,7 +55,7 @@ int main() {
       int b_op;
       
       cout << "please enter 1 for addition, 2 for multiplication, 3 for subtraction or 4 for division" <<endl;
-      
+        
       cin >> b_op;
       
       int t = 0;
@@ -104,6 +106,8 @@ int main() {
       
       
     }
+
+    //PHYSICS OPERATIONS (DAY 2)
     
     
     if(op == "p") {
@@ -111,12 +115,12 @@ int main() {
       int c_op;
       
       std::cout << "Please enter" << std::endl 
-		<< "5 to calculate the x-Intercept of a linear function" << std::endl
-		<< "6 to solve a quadratic equation" <<std::endl
-		<< "7 to calculate the length of a 3-vector" << std::endl
-		<< "8 to calculate the length of a 4-vector" << std::endl
-		<< "9 to calculate the invariant mass of two particles" << std::endl
-		<< "10 to sort an array of numbers from largest to smallest" << std::endl;
+		<< "       - 5 to calculate the x-Intercept of a linear function" << std::endl
+		<< "       - 6 to solve a quadratic equation" <<std::endl
+		<< "       - 7 to calculate the length of a 3-vector" << std::endl
+		<< "       - 8 to calculate the length of a 4-vector" << std::endl
+		<< "       - 9 to calculate the invariant mass of two particles" << std::endl
+		<< "       -10 to sort an array of numbers from largest to smallest" << std::endl;
 
 
       std::cin >> c_op;
@@ -171,12 +175,12 @@ int main() {
 	
 	for(int i=0; i<length ; i++){
 
-	  std::cin >> a[i]; 
+	   std::cin >> a[i]; 
 
 	}
 	
 	std::cout << "your sorted array from largest to smallest is: " << std::endl;
-	
+       
 	sort(a, length);
 
 
@@ -186,6 +190,68 @@ int main() {
  
 
  
+    }
+
+
+    // RELATIVISTIC PHYSICS OPERATIONS (DAY 3)
+
+    if(op=="r") {
+      
+      int r_op;
+
+      std::cout << "Please chose " << endl << "       -11 to boost a 4-Vector in z-direction" << endl << "       - or 12 to calculate the invariant length of a 4-vector" << std::endl;
+
+      std::cin >> r_op;
+      
+      int control = 0;
+      while(control==0){
+
+        if((r_op !=11) & (r_op !=12)){
+
+	  std::cout << "please chose 11 or 12 to  select an operation!" << endl;
+	  std::cin.clear();
+          cin.ignore(INT_MAX, '\n');
+	  std::cin >> r_op;
+
+        }
+        else{control=1;}
+      }
+
+
+      double t;
+      double x;
+      double y;
+      double z;
+
+      std::cout << "Please enter time(not c*t), x-component, y-component and z-component of your 4-vector" << std::endl;
+
+
+      std::cin >> t >> x >> y >> z;
+
+      FourVector q;
+      q = FourVector(t, x, y, z);
+
+
+      if(r_op==11){
+
+	double v;
+	std::cout << "Please enter boost velocity in z-direction" << std::endl;
+
+	std::cin >> v;
+
+	q.z_boost(v);
+
+      }
+
+      if(r_op==12) {
+
+	std::cout << "The length of your vector is: "<< q.get_interval() << std::endl;
+
+      }
+      
+
+
+
     }
     
   }
