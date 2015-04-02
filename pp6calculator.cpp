@@ -1,13 +1,14 @@
 #include<iostream>
+#include <string>
 #include<climits>
 #include<cmath>
 #include "bubble_sort.hpp"
 #include "physics.hpp"
 #include "maths.hpp"
 #include "FourVector.hpp"
+#include "ThreeVector.hpp"
 
 using namespace std;
-
 
 //this programme defines the user interface for the pp6calculator. It makes use of maths and physics functions defined in maths.cpp and physics.cpp as well as a sort function defined in bubble_sort.cpp. It lets the user operate a multi-level menu of available functions. 
 
@@ -23,13 +24,13 @@ int main() {
 
     //top level of the menu. decide between b(basic arithmetic), p(physics), r(relativistic physics) or q(quit)
 
-    std::cout << "enter  - b if you want to do basic arithmetic(Day1)," << endl << "       - p for more complex physics operations(Day2)," << endl  << "       - r for relativistic physics operations(Day3)" << endl << "       - or q to quit the calculator" << endl;
+    std::cout << "enter  - b if you want to do basic arithmetic(Day1)," << std::endl << "       - p for more complex physics operations(Day2)," << std::endl  << "       - r for relativistic physics operations(Day3)" << std::endl << "       - or q to quit the calculator" << std::endl;
 
     std::cin >> op;
     
     if((op !="b") & (op !="q") & (op !="p") & (op != "r")) {
       
-      std::cout << "input not recognized. Please try again" << endl;
+      std::cout << "input not recognized. Please try again" << std::endl;
       std::cin.clear();
       continue;
       
@@ -37,7 +38,7 @@ int main() {
     }
     
     if(op=="q"){
-      std::cout << "Thank you for using PP6CALCULATOR! <3" << endl;
+      std::cout << "Thank you for using PP6CALCULATOR! <3" << std::endl;
       break;
     }
     
@@ -54,9 +55,9 @@ int main() {
       
       int b_op;
       
-      cout << "please enter 1 for addition, 2 for multiplication, 3 for subtraction or 4 for division" <<endl;
-        
-      cin >> b_op;
+      std::cout << "please enter 1 for addition, 2 for multiplication, 3 for subtraction or 4 for division" << std::endl;
+      
+      std::cin >> b_op;
       
       int t = 0;
       
@@ -64,44 +65,44 @@ int main() {
       while(0 == t) {
 	
 	if((b_op != 1) && (b_op != 2) && (b_op != 3) && (b_op != 4) )
-	  {cout << "Please chose between 1, 2, 3 and 4 to chose an operation!!"<< endl;
-	    cin.clear();
-	    cin.ignore(INT_MAX, '\n');
-	    cin >> b_op;
+	  {std::cout << "Please chose between 1, 2, 3 and 4 to chose an operation!!"<< std::endl;
+	    std::cin.clear();
+	    std::cin.ignore(INT_MAX, '\n');
+	    std::cin >> b_op;
 	  }
 	else{t = 1;}
 	
       }
       
       
-      cout << "please enter two numbers that you want to perform the operation on!" << endl;
+      std::cout << "please enter two numbers that you want to perform the operation on!" << std::endl;
       
-      cin >> a >> b;
+      std::cin >> a >> b;
       
       
       
       
       if(b_op==1){
-	cout << "The sum of " << a << " and " << b << " is: " << add(a,b) << endl;
+	std::cout << "The sum of " << a << " and " << b << " is: " << add(a,b) << std::endl;
        
       }
       
       if(b_op==2){
-	cout << "The product of " << a << " and " << b << " is: " << multiply(a,b) << endl;
+	std::cout << "The product of " << a << " and " << b << " is: " << multiply(a,b) << std::endl;
 	
       }
       
       if(b_op==3){
-	cout << "The difference of " << a << " and " << b << " is: " << subtract(a,b) << endl;
+	std::cout << "The difference of " << a << " and " << b << " is: " << subtract(a,b) << std::endl;
        
       }
       
       
       if(b_op==4){
 	if (0==b)
-	  {cout << "Don't devide by zero, it implodes the universe!!" << endl;
+	  {std::cout << "Don't devide by zero, it implodes the universe!!" << std::endl;
 	  }
-	else{cout << "The fraction of " << a << " and " << b << " is: " << divide(a,b) << endl;}
+	else{std::cout << "The fraction of " << a << " and " << b << " is: " << divide(a,b) << std::endl;}
       }
       
       
@@ -132,9 +133,9 @@ int main() {
 
 	if((c_op !=5) & (c_op !=6) & (c_op !=7) & (c_op !=8) & (c_op !=9) & (c_op !=10)){
 
-	  std::cout << "please chose between 5-10 to select an operation!" << endl;
+	  std::cout << "please chose between 5-10 to select an operation!" << std::endl;
 	  std::cin.clear();
-	  cin.ignore(INT_MAX, '\n');
+	  std::cin.ignore(INT_MAX, '\n');
 	  std::cin >> c_op;
 	
 	}
@@ -199,7 +200,7 @@ int main() {
       
       int r_op;
 
-      std::cout << "Please chose " << endl << "       -11 to boost a 4-Vector in z-direction" << endl << "       - or 12 to calculate the invariant length of a 4-vector" << std::endl;
+      std::cout << "Please chose " << std::endl << "       -11 to boost a 4-Vector in z-direction" << std::endl << "       - or 12 to calculate the invariant length of a 4-vector" << std::endl;
 
       std::cin >> r_op;
       
@@ -208,9 +209,9 @@ int main() {
 
         if((r_op !=11) & (r_op !=12)){
 
-	  std::cout << "please chose 11 or 12 to  select an operation!" << endl;
+	  std::cout << "please chose 11 or 12 to  select an operation!" << std::endl;
 	  std::cin.clear();
-          cin.ignore(INT_MAX, '\n');
+	  std::cin.ignore(INT_MAX, '\n');
 	  std::cin >> r_op;
 
         }
@@ -255,6 +256,8 @@ int main() {
     }
     
   }
+
+  return 0;
   
 }
 
